@@ -129,9 +129,9 @@ const Login = () => {
           </button>
           {isSignInForm && (
             <div className="text-center mt-2">
-              <a href="/#" className="hover:underline text white text-white">
+              <button className="hover:underline text white text-white">
                 Forgot password?
-              </a>
+              </button>
             </div>
           )}
           {isSignInForm && (
@@ -145,24 +145,22 @@ const Login = () => {
             {isSignInForm ? (
               <span className="text-gray-300">
                 New to Netflix?{" "}
-                <a
-                  href="/#"
+                <button
                   onClick={() => toggleSignInForm()}
                   className="hover:underline text white text-white"
                 >
                   Sign up now
-                </a>
+                </button>
               </span>
             ) : (
               <span className="text-gray-300">
                 Already user?{" "}
-                <a
-                  href="/#"
+                <button
                   onClick={() => toggleSignInForm()}
                   className="hover:underline text white text-white"
                 >
                   Sign In
-                </a>
+                </button>
               </span>
             )}
           </div>

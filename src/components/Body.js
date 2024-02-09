@@ -21,7 +21,7 @@ const Body = () => {
   ]);
 
   useEffect(() => {
-    onAuthStateChanged(firebaseAuth, (user) => {
+    const unsubscribe = onAuthStateChanged(firebaseAuth, (user) => {
       if (user) {
         const { uid, email, displayName, photoURL } = user;
         console.log(uid, email, displayName, photoURL);
@@ -29,7 +29,8 @@ const Body = () => {
         dispatch(removeAuth());
       }
     });
-  }, [dispatch]);
+    return () => unsubscribe();
+  }, []);
   return (
     <div>
       <RouterProvider router={appRouter} />

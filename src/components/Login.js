@@ -10,6 +10,7 @@ import { firebaseAuth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addAuth } from "../utils/authSlice";
+import { HOME_BANNER, USER_PROFILE } from "../utils/constant";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const Login = () => {
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
   };
-
+  
   const handleSubmitForm = () => {
     const message = isSignInForm
       ? checkValidSignInForm(email.current.value, password.current.value)
@@ -60,11 +61,10 @@ const Login = () => {
           const user = userCredential.user;
           updateProfile(user, {
             displayName: username.current.value,
-            photoURL:
-              "https://avatars.githubusercontent.com/u/31915843?s=400&u=70a37246c008da50b5f310ef3a7da4f071f92a68&v=4",
+            photoURL: USER_PROFILE,
           })
             .then(() => {
-              const { uid, email, displayName, photoURL } = user;
+              const { uid, email, displayName, photoURL } = firebaseAuth.currentUser;
               dispatch(addAuth({ uid, email, displayName, photoURL }));
               navigate("/browse");
             })
@@ -83,8 +83,7 @@ const Login = () => {
     <div
       style={{
         height: "100vh",
-        backgroundImage:
-          "url('https://assets.nflxext.com/ffe/siteui/vlv3/c906271d-7184-4eec-83c9-b6d4c1a068ec/728874a6-eeda-400a-9bcf-a935a1408a4f/IN-en-20231127-popsignuptwoweeks-perspective_alpha_website_large.jpg')",
+        backgroundImage: `url(${HOME_BANNER})`,
       }}
     >
       <Header />

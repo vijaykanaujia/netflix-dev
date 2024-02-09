@@ -27,7 +27,7 @@ const Header = () => {
       });
   };
   return (
-    <div className="px-6 py-1 bg-gradient-to-b from-black flex justify-between items-center">
+    <div className="fixed w-full z-20 px-6 py-1 bg-gradient-to-b from-black flex justify-between items-center">
       <div>
         <img
           className="w-52"
@@ -39,7 +39,7 @@ const Header = () => {
         {auth && (
           <div className="flex items-center justify-center">
             <img className="w-10" src={auth?.photoURL} alt="user" />
-            <button className="ps-2" onClick={() => handleSignOut()}>
+            <button className="ps-2 text-white" onClick={() => handleSignOut()}>
               Sign Out
             </button>
           </div>

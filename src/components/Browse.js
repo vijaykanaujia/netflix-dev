@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import GBTSearch from "./GBTSearch";
 
 const Browse = () => {
   useNowPlayingMovies();
@@ -13,41 +14,48 @@ const Browse = () => {
   useTopRatedMovies();
   useUpcomingMovies();
   const movies = useSelector((store) => store.movies);
+  const toggleGbtSearch = useSelector((store) => store.gbt?.showGbtSearch);
   return (
     movies && (
       <div className="w-full">
         <Header />
-        {movies?.nowPlayingMovies && (
-          <BannerHead bannerData={movies?.nowPlayingMovies[3]} />
+        {toggleGbtSearch ? (
+          <GBTSearch />
+        ) : (
+          <>
+            {movies?.nowPlayingMovies && (
+              <BannerHead bannerData={movies?.nowPlayingMovies[3]} />
+            )}
+            <div className="bg-black">
+              <div className="-mt-32">
+                {movies.nowPlayingMovies && (
+                  <MoviesList
+                    title={"Now Playing Movies"}
+                    movies={movies.nowPlayingMovies}
+                  />
+                )}
+                {movies.popularMovies && (
+                  <MoviesList
+                    title={"Popular Movies"}
+                    movies={movies.popularMovies}
+                  />
+                )}
+                {movies.topRatedMovies && (
+                  <MoviesList
+                    title={"Top Rated Movies"}
+                    movies={movies.topRatedMovies}
+                  />
+                )}
+                {movies.upcomingMovies && (
+                  <MoviesList
+                    title={"Upcoming Movies"}
+                    movies={movies.upcomingMovies}
+                  />
+                )}
+              </div>
+            </div>
+          </>
         )}
-        <div className="bg-black">
-          <div className="-mt-32">
-            {movies.nowPlayingMovies && (
-              <MoviesList
-                title={"Now Playing Movies"}
-                movies={movies.nowPlayingMovies}
-              />
-            )}
-            {movies.popularMovies && (
-              <MoviesList
-                title={"Popular Movies"}
-                movies={movies.popularMovies}
-              />
-            )}
-            {movies.topRatedMovies && (
-              <MoviesList
-                title={"Top Rated Movies"}
-                movies={movies.topRatedMovies}
-              />
-            )}
-            {movies.upcomingMovies && (
-              <MoviesList
-                title={"Upcoming Movies"}
-                movies={movies.upcomingMovies}
-              />
-            )}
-          </div>
-        </div>
       </div>
     )
   );

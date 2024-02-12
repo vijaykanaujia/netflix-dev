@@ -2,10 +2,10 @@ import { useSelector } from "react-redux";
 import useMoviesTrailer from "../hooks/useMoviesTrailer";
 
 const BannerVideo = ({ moviesID }) => {
+  useMoviesTrailer(moviesID);
   const trailerVideo = useSelector(
     (state) => state.movies?.trailerVideo || null
   );
-  useMoviesTrailer(moviesID);
   return (
     <div>
       <iframe

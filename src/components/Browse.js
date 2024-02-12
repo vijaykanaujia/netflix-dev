@@ -24,7 +24,7 @@ const Browse = () => {
         ) : (
           <>
             {movies?.nowPlayingMovies && (
-              <BannerHead bannerData={movies?.nowPlayingMovies[3]} />
+              <BannerHead bannerData={movies?.nowPlayingMovies[0]} />
             )}
             <div className="bg-black">
               <div className="-mt-32">

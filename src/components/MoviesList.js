@@ -6,7 +6,7 @@ const MoviesList = ({ title, movies }) => {
   return (
     <div className="mx-4 pb-4">
       <h1 className="text-white text-2xl py-3">{title}</h1>
-      <div className="flex overflow-x-scroll">
+      <div className="flex overflow-x-auto">
         <Each
           of={movies}
           render={(movie) => {
